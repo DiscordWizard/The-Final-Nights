@@ -1069,12 +1069,8 @@
 // Code here is for dealing special damage and effects to garou, as well as the extra damage if the glaive is active
 // The non-active if(!aggravate) deals the same clone damage as a silver bullet, as well as some of its debuffs
 // The active if(aggravate) deals extra clone damage to the garou, and also deals clone damage to all carbons and vampires
-/obj/item/melee/vampirearms/klaive/afterattack(atom/target, mob/living/carbon/user, proximity)
-	if(!proximity)
-		return
-	if(parried) //This is for automatic item block chance parry, not the parrying intent
-		parried = FALSE
-		return
+/obj/item/melee/vampirearms/klaive/attack(mob/living/target, mob/living/user)
+	. = ..()
 	if(isgarou(target) || iswerewolf(target))
 		var/mob/living/carbon/wolf = target
 		if(wolf.blocking || wolf.parrying) //This is so a blocked or parried klaive does not deal clone damage
@@ -1100,6 +1096,7 @@
 			human.apply_damage(aggravate_damage, CLONE)
 
 // These are the crafting recipes for each klaive
+// They are currently unused, no one has the CAT_GAROU category nor the recipes themselves
 /datum/crafting_recipe/klaive
 	category = CAT_GAROU
 	always_available = FALSE
@@ -1119,7 +1116,7 @@
 /datum/crafting_recipe/klaive/bsd
 	name = "Spiral Dancer Klaive"
 	result = /obj/item/melee/vampirearms/klaive/bsd
-	reqs = list(/obj/item/silverbar = 2, /obj/item/drinkable_bloodpack = 1)
+	reqs = list(/obj/item/silverbar = 2, /obj/item/reagent_containers/blood = 1)
 	time = 30
 
 // Fancy adminspawn only item, this thing is a monstrous weapon. Doubly so in a garou's hands

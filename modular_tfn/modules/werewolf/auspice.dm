@@ -71,10 +71,11 @@
  * On gaining crafting recipes for garou klaives
  *
  * This grants a specific silver klaive crafting recipe depending on tribe.
+ * Disabled for the time being until a good system to share the craftin recipes is found
  */
 /datum/auspice/proc/add_recipe_klaive(datum/source, mob/living/user)
 	SIGNAL_HANDLER
-
+	/*
 	if(tribe.name == "Glass Walkers")
 		user.mind.teach_crafting_recipe(/datum/crafting_recipe/klaive/glasswalker)
 
@@ -83,7 +84,7 @@
 
 	if(tribe.name == "Black Spiral Dancers")
 		user.mind.teach_crafting_recipe(/datum/crafting_recipe/klaive/bsd)
-
+	*/
 	UnregisterSignal(src, COMSIG_CHARACTER_GENERATED)
 
 /**
